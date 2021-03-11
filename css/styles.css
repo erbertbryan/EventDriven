@@ -43,5 +43,13 @@ input{
 .col-mm {
   padding-bottom: 10px;
 }
-
-
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: black;
+  opacity: 1; /* Firefox */
+}
+.icol {
+  background-color: rgb(170, 170, 170);
+}
+h1 {
+  text-align: center;
+}
