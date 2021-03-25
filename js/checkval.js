@@ -19,34 +19,15 @@ var subtotal2 = document.getElementById('subtotal2')
 var subtotal3 = document.getElementById('subtotal3')
 var subtotal4 = document.getElementById('subtotal4')
 var save = document.getElementById('save')
-var a = [ORNumber,
-    customerName,
-    item1,
-    item2,
-    item3,
-    item4,
-    price1,
-    price2,
-    price3,
-    price4,
-    qty1,
-    qty2,
-    qty3,
-    qty4,
-    subtotal1,
-    subtotal2,
-    subtotal3,
-    subtotal4]
-newCustomer.addEventListener('show.bs.modal', function(){ //TRIGGER UPON MODAL DISPLAY
+var a = [ORNumber,customerName,item1,item2,item3,item4,price1,price2,price3,price4,qty1,qty2,qty3,qty4,subtotal1,subtotal2,subtotal3,subtotal4]
+newCustomer.addEventListener('show.bs.modal', function(){ 
     for(var i = 0; i < a.length; i++){
         a[i].value = ''
         if (i >= 2){
             a[i].disabled = true
         }
-    }
-    
+    }  
 })
-
 const request = 'https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood'
 var response 
 fetch (request)
@@ -72,9 +53,7 @@ fetch (request)
 .catch((err) =>{
     console.log(err)
 })
-
-
-newCustomer.addEventListener('change', function(){ //TRIGGER EVERY CONTENT CHANGE INSIDE MODAL
+newCustomer.addEventListener('change', function(){ 
     if(ORNumber.value != '' && customerName.value != ''){
         item1.disabled = false
     }
@@ -82,7 +61,7 @@ newCustomer.addEventListener('change', function(){ //TRIGGER EVERY CONTENT CHANG
         item1.disabled = true
     }
 })
-ORNumber.addEventListener('change', function(){ //ORNUMBER VALIDATOR
+ORNumber.addEventListener('change', function(){ 
     var data = JSON.parse(localStorage.getItem('customers'))
     if(data != null){
         for(var i = 0; i < data.length; i++){
@@ -93,7 +72,7 @@ ORNumber.addEventListener('change', function(){ //ORNUMBER VALIDATOR
         }
     }
 })
-customerName.addEventListener('change', function(){ //CUSTOMERNAME VALIDATOR
+customerName.addEventListener('change', function(){ 
     if(customerName.value.search(' ') != -1 && customerName.value.split(' ').length == 2 && (isNaN(customerName.value.split(' ')[0]) && isNaN(customerName.value.split(' ')[1]))){
         var checker = true
         var customerNameArray = customerName.value.split(' ')
@@ -129,11 +108,10 @@ customerName.addEventListener('change', function(){ //CUSTOMERNAME VALIDATOR
     else{
         item1.disabled = true
         customerName.value = ''
-    }
-    
+    }   
 })
 
-item1.addEventListener('change', function(){ //ITEM1 VALIDATOR (REFER VARIABLE NAMING FOR OTHER ITEMS)
+item1.addEventListener('change', function(){
         price1.value = ''
         qty1.value = ''
         subtotal1.value = ''
@@ -164,7 +142,7 @@ item1.addEventListener('change', function(){ //ITEM1 VALIDATOR (REFER VARIABLE N
         price4.disabled = true
         qty4.disabled = true
 })
-price1.addEventListener('change', function(){ // PRICE1 VALIDATOR (REFER VARIABLE NAMING FOR OTHER PRICES)
+price1.addEventListener('change', function(){ 
     if(isNaN(price1.value)){
 
         price1.value = ''
@@ -265,7 +243,7 @@ price1.addEventListener('change', function(){ // PRICE1 VALIDATOR (REFER VARIABL
         }
     }
 })
-qty1.addEventListener('change', function(){// QTY VALIDATOR (REFER VARIABLE NAMING FOR OTHER QTYS)
+qty1.addEventListener('change', function(){
     if(price1.value <= '0'){
         qty1.value = ''
         subtotal1.value = ''
